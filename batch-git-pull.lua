@@ -9,8 +9,10 @@
 local lfs = require 'lfs'
 
 -- 只对'Code'和'Mine'目录操作
-local targetGitDir = {'../Test'}
--- local targetGitDir = {'../Code', '../Mine'}
+-- local targetGitDir = {os.getenv('HOME')..'../Test'}
+local targetGitDir = {
+    os.getenv('HOME') .. '/Code', os.getenv('HOME') .. '/Mine'
+}
 
 local runGitPullShell = function(filePath, fileName)
     -- local handle = io.popen('cd ' .. filePath .. '&& git pull --rebase')
@@ -41,7 +43,7 @@ local attrdir = function(rootPath)
 end
 
 local batchGitPull = function()
-    for index, dir in pairs(targetGitDir) do attrdir(dir) end
+    for _, dir in pairs(targetGitDir) do attrdir(dir) end
 end
 
 batchGitPull()

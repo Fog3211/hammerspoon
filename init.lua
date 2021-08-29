@@ -4,3 +4,4 @@
 --
 require 'switch-clashx-by-wifi'
 require 'batch-git-pull'
+-- require 'reload-hs-config'
