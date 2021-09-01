@@ -11,30 +11,29 @@ local lfs = require 'lfs'
 -- 只对'Code'和'Mine'目录操作
 -- local targetGitDir = {os.getenv('HOME')..'../Test'}
 local targetGitDir = {
-    os.getenv('HOME') .. '/Code', os.getenv('HOME') .. '/Mine'
+    Code = {wifi = 'HUPU.WORK.5G', dir = os.getenv('HOME') .. '/Code'},
+    Mine = {wifi = '*', dir = os.getenv('HOME') .. '/Mine'}
 }
 
-local runGitPullShell = function(filePath, fileName)
-    -- local handle = io.popen('cd ' .. filePath .. '&& git pull --rebase')
-    -- local result = handle:read("*a")
-    -- handle:close()
-    -- print(result)
-    -- hs.alert.show(filePath)
-    local a = os.execute('cd ' .. filePath .. '&& git pull --rebase --all')
-    print(a)
+local runGitPullShell = function(filePath)
+    os.execute('cd ' .. filePath .. '&& git pull --rebase --all')
 end
 
-local attrdir = function(rootPath)
-    for file in lfs.dir(rootPath) do
-        if file ~= '.' and file ~= '..' then
-            -- 过滤'.'和'..'目录
-            local filePath = rootPath .. '/' .. file
-            local fileAttr = lfs.attributes(filePath)
-            if fileAttr.mode == 'directory' then
-                for subFile in lfs.dir(filePath) do
-                    -- 先检查当前项目是否有.git，没有的话跳过
-                    if subFile == '.git' then
-                        runGitPullShell(filePath, file)
+local attrdir = function(rootPath, wifi)
+    local currWifi = hs.wifi.currentNetwork()
+    -- 对wifi进行判断，内网才请求工作目录
+    if (currWifi == wifi) or wifi == '*' then
+        for file in lfs.dir(rootPath) do
+            if file ~= '.' and file ~= '..' then
+                -- 过滤'.'和'..'目录
+                local filePath = rootPath .. '/' .. file
+                local fileAttr = lfs.attributes(filePath)
+                if fileAttr.mode == 'directory' then
+                    for subFile in lfs.dir(filePath) do
+                        -- 先检查当前项目是否有.git，没有的话跳过
+                        if subFile == '.git' then
+                            runGitPullShell(filePath)
+                        end
                     end
                 end
             end
@@ -43,7 +42,7 @@ local attrdir = function(rootPath)
 end
 
 local batchGitPull = function()
-    for _, dir in pairs(targetGitDir) do attrdir(dir) end
+    for _, item in pairs(targetGitDir) do attrdir(item.dir, item.wifi) end
 end
 
 batchGitPull()
