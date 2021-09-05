@@ -45,4 +45,9 @@ local batchGitPull = function()
     for _, item in pairs(targetGitDir) do attrdir(item.dir, item.wifi) end
 end
 
-batchGitPull()
+-- 用于和alfred配合做自定义事件监听
+local configFileWatcher = hs.pathwatcher.new(
+                              os.getenv('HOME') ..
+                                  '/.hammerspoon/log/batch-git-pull.log',
+                              batchGitPull)
+configFileWatcher:start()

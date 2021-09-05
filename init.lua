@@ -3,5 +3,5 @@
 -- Description: 一些自动化脚本
 --
 require 'switch-clashx-by-wifi'
-require 'batch-git-pull'
+-- require 'batch-git-pull'
 require 'reload-hs-config'
