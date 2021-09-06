@@ -8,15 +8,8 @@
 --
 local lfs = require 'lfs'
 
--- 只对'Code'和'Mine'目录操作
--- local targetGitDir = {os.getenv('HOME')..'../Test'}
-local targetGitDir = {
-    Code = {wifi = 'HUPU.WORK.5G', dir = os.getenv('HOME') .. '/Code'},
-    Mine = {wifi = '*', dir = os.getenv('HOME') .. '/Mine'}
-}
-
 local runGitPullShell = function(filePath)
-    os.execute('cd ' .. filePath .. '&& git pull --rebase --all')
+    os.execute('cd ' .. filePath .. '&& git stash && git pull --rebase --all && git stash pop')
 end
 
 local attrdir = function(rootPath, wifi)
@@ -42,7 +35,9 @@ local attrdir = function(rootPath, wifi)
 end
 
 local batchGitPull = function()
-    for _, item in pairs(targetGitDir) do attrdir(item.dir, item.wifi) end
+    for _, item in pairs(Batch_Git_Pull_Config) do
+        attrdir(item.dir, item.wifi)
+    end
 end
 
 -- 用于和alfred配合做自定义事件监听

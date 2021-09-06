@@ -3,16 +3,14 @@
 -- Description: wifi切换时自动控制ClashX的状态
 --
 -- wifi名称常量
-local workWifi = 'HUPU.WORK.5G'
-local appLists = {ClashX = 'ClashX.app'}
+local workWifi = Switch_Clashx_By_Wifi_Config.workWifi
+local appLists = Switch_Clashx_By_Wifi_Config.appLists
 
 -- 判断指定 APP 是否运行，如果未运行，则运行
 local launchApp = function()
     for app in pairs(appLists) do
         local getApp = hs.application(app)
-        if not getApp then
-            hs.application.launchOrFocus(app)
-        end
+        if not getApp then hs.application.launchOrFocus(app) end
     end
 end
 
