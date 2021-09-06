@@ -4,6 +4,6 @@
 --
 require 'modules.constants'
 require 'modules.switch-clashx-by-wifi'
--- require 'batch-git-pull'
+require 'modules.batch-git-pull'
 require 'modules.reload-hs-config'
 require 'modules.auto-update'
