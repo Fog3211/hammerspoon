@@ -9,6 +9,7 @@ local reloadConfig = function(paths)
     for _, file in pairs(paths) do
         if file:sub(-4) == '.lua' then
             print('A lua config file changed, reload')
+            hs.alert.show('A lua config file changed, reload')
             needReload = true
         end
     end
