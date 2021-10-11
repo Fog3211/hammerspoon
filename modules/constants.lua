@@ -6,7 +6,7 @@ Auto_Update_Config = {
     -- 更新rust，包含 rustc 和 cargo
     rust_update = 'rustup update',
     -- 更新依赖库
-    homebrew_update = 'brew update',
+    homebrew_update = 'brew upgrade',
     -- 移除旧版本依赖库
     homebrew_clean = 'brew cleanup',
     -- 更新on my zsh
