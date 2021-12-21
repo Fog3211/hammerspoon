@@ -23,8 +23,7 @@ local killApp = function()
 end
 
 -- 依据当前网络情况启动或关闭应用
-local wifiWatcher = hs.wifi.watcher.new(function()
-
+wifiWatcher = hs.wifi.watcher.new(function()
     local currWifi = hs.wifi.currentNetwork()
 
     -- 连接 workWifi 时
