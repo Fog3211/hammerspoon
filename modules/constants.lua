@@ -10,7 +10,9 @@ Auto_Update_Config = {
     -- 移除旧版本依赖库
     homebrew_clean = 'brew cleanup',
     -- 更新on my zsh
-    on_my_zsh_update = 'omz update'
+    on_my_zsh_update = 'omz update',
+    -- 更新on my zsh
+    pnpm_update = 'pnpm i pnpm -g'
 }
 
 -- 只对'Code'和'Mine'目录操作

@@ -9,7 +9,7 @@
 local lfs = require 'lfs'
 
 local runGitPullShell = function(filePath)
-    os.execute('cd ' .. filePath .. '&& git stash && git pull')
+    os.execute('cd ' .. filePath .. '&& git stash && git pull && git stash pop')
     -- os.execute('cd ' .. filePath ..
     --                '&& git stash && git pull --rebase --all && git stash pop')
 end
