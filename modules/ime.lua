@@ -1,5 +1,3 @@
--- Date: 2021-09-08 22:34:29
--- LastEditTime: 2021-09-08 22:45:49
 -- Description: 自动切换输入法
 --
 local Chinese = function()
@@ -10,6 +8,7 @@ local English = function() hs.keycodes
     .currentSourceID('com.apple.keylayout.ABC') end
 
 local ImeConfig = {
+    {'/Applications/Terminal.app', 'English'},
     {'/Applications/iTerm.app', 'English'},
     {'/Applications/Visual Studio Code.app', 'English'},
     {'/Applications/Google Chrome.app', 'English'},
@@ -17,11 +16,15 @@ local ImeConfig = {
     {'/Applications/GitHub Desktop.app', 'English'},
     {'/Applications/EasyConnect.app', 'English'},
     {'/Applications/Postman.app', 'English'},
+    {'/Applications/Hammerspoon.app', 'English'},
+    {'/Applications/Termius.app', 'English'},
+    {'/Applications/SwitchHosts.app', 'English'},
     {'/Applications/Alfred.app', 'English'},
     {'/Applications/喜马拉雅.app', 'Chinese'},
     {'/Applications/TickTick.app', 'Chinese'},
     {'/Applications/DingTalk.app', 'Chinese'},
-    {'/Applications/WeChat.app', 'Chinese'}, {'/Applications/QQ.app', 'Chinese'}
+    {'/Applications/WeChat.app', 'Chinese'},
+    {'/Applications/QQ.app', 'Chinese'}
 }
 
 local switchFocusAppIme = function()
